@@ -33,7 +33,7 @@ async function getPhotoUrls(photos, user){
 
 
 
-export default async function PhotoGrid({favorites = false}){
+export default async function PhotoGrid(){
     const supabaseServer = await getSupabaseServer();
     const { data: { user } } = await supabaseServer.auth.getUser()
     const photos = await fetchUserPhotos(user);
