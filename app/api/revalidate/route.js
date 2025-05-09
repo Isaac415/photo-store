@@ -1,8 +1,10 @@
+'use server'
+
 import { createServerClient } from "@supabase/ssr";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export async function POST(request){
+export default async function POST(request){
     try {
         const body = await request.json();
         const path = body.path
@@ -55,13 +57,3 @@ export async function POST(request){
         })
     }
 }
-
-export default async function handler(req, res) {
-    if (req.method === "POST") {
-      return POST(req);
-    }
-    return new Response(JSON.stringify({ message: "Method not allowed" }), {
-      status: 405,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
