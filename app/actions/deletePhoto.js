@@ -16,7 +16,7 @@ function extractFilePath(url){
     return 'user_uploads/' + filePath
 }
 
-export default async function deletePhoto(formData){
+export async function deletePhoto(formData){
     const src = formData.get('photoPath')
     const filePath = extractFilePath(src)
 

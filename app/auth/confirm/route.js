@@ -7,7 +7,7 @@ export async function GET(request){
     const token_hash = searchParams.get('token_hash');
     const next = searchParams.get('next');
     const type = searchParams.get('type');
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
 
 
     const supabase = createServerClient(
