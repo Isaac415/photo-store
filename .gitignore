@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+
+# Build cache
+.next/cache/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env*.local
+.env
+
+# IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output/
+
+# Optional config files
+jsconfig.json
+tsconfig.json
+
+# Cache directories
+.eslintcache
+.turbo
+.cache/
+
+# Lockfiles (uncomment if not tracking in git)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Local development
+.next/server/**/*.npm
+.next/server/**/*.npx
