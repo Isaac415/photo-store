@@ -8,11 +8,7 @@ const nextConfig = {
         }
       ]
     },
-    // Add these two options:
     output: 'standalone',
-    experimental: {
-      appDir: true
-    }
   };
   
   export default nextConfig;
