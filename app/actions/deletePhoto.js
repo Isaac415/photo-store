@@ -2,21 +2,22 @@
 import { cookies } from "next/headers"
 import { createServerClient } from "@supabase/ssr";
 import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
 
-function extractFilePath(url){
+function extractFilePath(url) {
     const parts = url.split('/user_uploads/')
     if (parts.length < 2) {
         console.error("Invalid URL format")
         return ""
     }
     let filePath = parts[1]
-    if (filePath.includes('?')){
+    if (filePath.includes('?')) {
         filePath = filePath.split('?')[0]
     }
     return 'user_uploads/' + filePath
 }
 
-export async function deletePhoto(formData){
+export async function deletePhoto(formData) {
     const src = formData.get('photoPath')
     const filePath = extractFilePath(src)
 
@@ -26,23 +27,23 @@ export async function deletePhoto(formData){
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
         {
             cookies: {
-                get(name){
+                get(name) {
                     return cookieStore.get(name)?.value
                 },
-                set(name){
-                    cookieStore.set({name, value, ...options})
+                set(name, value, options) {
+                    cookieStore.set({ name, value, ...options })
                 },
-                remove(name, options){
-                    cookieStore.set({name, value: '', ...options})
+                remove(name, options) {
+                    cookieStore.set({ name, value: '', ...options })
                 }
             }
         }
     )
-    const {error, data} = await supabase.storage.from('photos').remove([filePath])
+    const { error, data } = await supabase.storage.from('photos').remove([filePath])
     if (error) {
-        return {success: false, error}
+        return NextResponse.json({ success: false, error }, { status: 500 })
     }
     revalidatePath('/photos')
 
-    return {success: true}
+    return NextResponse.json({ success: true }, { status: 200 })
 }

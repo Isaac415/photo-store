@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-export async function middleware(req){
+export default async function middleware(req){
     const res = NextResponse.next();
 
     const supabase = createServerClient(
@@ -54,6 +54,6 @@ export async function middleware(req){
     return res
 }
 
-export default config = {
+export const config = {
     matcher: ['/', '/photos']
 }
