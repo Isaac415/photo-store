@@ -45,7 +45,7 @@ export default function AuthForm(){
         signInMessage = "Sign Up"
     }
 
-    const signUpMessage  = <p className="text-center text-black">Email sent! Check your email to confirm sign up.</p>
+    const signUpMessage  = <p className="text-center text-black">Account created successfully! Please log in.</p>
 
     return (
         <form onSubmit={isNewUser ? handleSignUp : handleLogin} className="space-y-8">
